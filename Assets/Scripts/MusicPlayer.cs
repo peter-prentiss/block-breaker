@@ -4,8 +4,7 @@ using System.Collections;
 public class MusicPlayer : MonoBehaviour {
 	static MusicPlayer instance = null;
 
-	void Awake ()
-	{
+	void Awake () {
 		Debug.Log ("Music player awake " + GetInstanceID());
 		if (instance != null) 
 		{
