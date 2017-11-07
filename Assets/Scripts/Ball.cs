@@ -16,9 +16,8 @@ public class Ball : MonoBehaviour {
 			this.transform.position = paddle.transform.position + paddleToBallVector;
 			
 			if (Input.GetMouseButtonDown(0)) {
-				print ("Mouse button clicked, launching ball");
-				this.rigidbody2D.velocity = new Vector2 (2f, 10f);
 				hasStarted = true;
+				this.rigidbody2D.velocity = new Vector2 (2f, 10f);
 			}
 		}
 	}
