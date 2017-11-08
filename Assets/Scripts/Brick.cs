@@ -3,12 +3,10 @@ using System.Collections;
 
 public class Brick : MonoBehaviour {
 
-	private LevelManager levelManager;
-
-	public int maxHits;
 	public Sprite[] hitSprites;
 
 	private int timesHit;
+	private LevelManager levelManager;
 
 	// Use this for initialization
 	void Start () {
@@ -22,7 +20,15 @@ public class Brick : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D (Collision2D collision) {
+		bool isBreakable = (this.tag == "Breakable");
+		if (isBreakable) {
+			HandleHits();
+		}
+	}
+
+	void HandleHits () {
 		timesHit++;
+		int maxHits = hitSprites.Length + 1;
 		if (timesHit >= maxHits) {
 			Destroy(gameObject);
 		} else {
@@ -32,7 +38,9 @@ public class Brick : MonoBehaviour {
 
 	void LoadSprites () {
 		int spriteIndex = timesHit - 1;
-		this.GetComponent<SpriteRenderer>().sprite = hitSprites[spriteIndex];
+		if (hitSprites[spriteIndex]) {
+			this.GetComponent<SpriteRenderer>().sprite = hitSprites[spriteIndex];
+		}
 	}
 
 	void SimulateWin () {
