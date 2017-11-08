@@ -6,6 +6,7 @@ public class Brick : MonoBehaviour {
 	private LevelManager levelManager;
 
 	public int maxHits;
+	public Sprite[] hitSprites;
 
 	private int timesHit;
 
@@ -24,7 +25,14 @@ public class Brick : MonoBehaviour {
 		timesHit++;
 		if (timesHit >= maxHits) {
 			Destroy(gameObject);
+		} else {
+			LoadSprites();
 		}
+	}
+
+	void LoadSprites () {
+		int spriteIndex = timesHit - 1;
+		this.GetComponent<SpriteRenderer>().sprite = hitSprites[spriteIndex];
 	}
 
 	void SimulateWin () {
