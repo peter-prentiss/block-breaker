@@ -2,13 +2,16 @@
 using System.Collections;
 
 public class Brick : MonoBehaviour {
-	
+
+	private LevelManager levelManager;
+
 	public int maxHits;
 
 	private int timesHit;
 
 	// Use this for initialization
 	void Start () {
+		levelManager = FindObjectOfType<LevelManager>();
 		timesHit = 0;
 	}
 	
@@ -18,7 +21,14 @@ public class Brick : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D (Collision2D collision) {
-		print ("Collider");
 		timesHit++;
+		// if (timesHit >= maxHits) {
+
+		// }
+		Destroy(gameObject);
+	}
+
+	void SimulateWin () {
+		levelManager.LoadNextLevel();
 	}
 }
