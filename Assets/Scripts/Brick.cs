@@ -22,10 +22,9 @@ public class Brick : MonoBehaviour {
 
 	void OnCollisionEnter2D (Collision2D collision) {
 		timesHit++;
-		// if (timesHit >= maxHits) {
-
-		// }
-		Destroy(gameObject);
+		if (timesHit >= maxHits) {
+			Destroy(gameObject);
+		}
 	}
 
 	void SimulateWin () {
